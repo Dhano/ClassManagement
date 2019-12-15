@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Classs;
+use App\FollowUp;
 use App\Exports\StudentsExport;
 use App\Imports\StudentsImport;
 use App\Notifications\EventAssigned;
@@ -60,7 +60,7 @@ class ClassController extends Controller
         //
         try {
 
-            $class= Classs::findOrFail($id);
+            $class= FollowUp::findOrFail($id);
 
             return view('class.add-class-students')->with([
                 'class' => $class
@@ -156,7 +156,7 @@ class ClassController extends Controller
         //
         try {
 
-            $class= Classs::findOrFail($id);
+            $class= FollowUp::findOrFail($id);
 
             return view('class.view-class')->with([
                 'class' => $class
@@ -255,14 +255,14 @@ class ClassController extends Controller
         $classes = $this->classService->getDatatable();
 
         return DataTables::of($classes)
-            ->addColumn('edit', function(Classs $class) {
+            ->addColumn('edit', function(FollowUp $class) {
 //                Redirect to page
                 return '<button id="'.$class->id.'" class="edit fa fa-pencil-alt btn-sm btn-warning" data-toggle="modal" data-target="#editModal"></button>';
             })
-            ->addColumn('delete', function(Classs $class) {
+            ->addColumn('delete', function(FollowUp $class) {
                 return '<button id="'.$class->id.'" class="delete fa fa-trash btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal"></button>';
             })
-            ->addColumn('view', function(Classs $class) {
+            ->addColumn('view', function(FollowUp $class) {
                 return '<a  class="view fa fa-search-plus btn-sm btn-success" href="/classes/'.$class->id.'"></a>';
             })
             ->rawColumns(['edit', 'delete', 'view'])
@@ -273,7 +273,7 @@ class ClassController extends Controller
     {
         error_log('get class students called');
         try{
-            $class = Classs::findOrFail($id);
+            $class = FollowUp::findOrFail($id);
 
             $students = $this->classService->getClassStudentsDatatable($class);
 

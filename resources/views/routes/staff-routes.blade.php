@@ -35,11 +35,11 @@
 </li>
 
 <li class="nav-item">
-    <a class="nav-link {{ Request::is('ipr*') ? 'active' : '' }}" href="#navbar-ipr" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-dashboards">
+    <a class="nav-link {{ Request::is('enquiry') ? 'active' : '' }}" href="#navbar-ipr" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-dashboards">
         <i class="ni ni-badge text-primary"></i>
         <span class="nav-link-text">IPR</span>
     </a>
-    <div class="collapse {{ Request::is('ipr*') ? 'show' : '' }}" id="navbar-ipr">
+    <div class="collapse {{ Request::is('enquiry') ? 'show' : '' }}" id="navbar-ipr">
         <ul class="nav nav-sm flex-column">
             <li class="nav-item">
                 <a href="/ipr/create" class="nav-link">Add IPR</a>

@@ -9,14 +9,14 @@
 namespace App\Services;
 
 
-use App\Classs;
+use App\FollowUp;
 
 class StudentService
 {
 
     public function store($validatedData, $user_id) {
 
-        $class=Classs::create([
+        $class=FollowUp::create([
             'year' => $validatedData['year'],
             'created_by' => $user_id
         ]);
@@ -27,7 +27,7 @@ class StudentService
 
     public function storeStudentsFromExcelSheet($validatedData, $user_id) {
 
-        $class=Classs::create([
+        $class=FollowUp::create([
             'year' => $validatedData['year'],
             'created_by' => $user_id
         ]);
@@ -43,11 +43,11 @@ class StudentService
      * @return mixed : List of States.
      */
     public function getDatatable() {
-        return Classs::orderBy('created_at', 'desc');
+        return FollowUp::orderBy('created_at', 'desc');
     }
 
     public function delete($id,$user_id) {
-        return Classs::where('id', $id)
+        return FollowUp::where('id', $id)
             ->delete();
     }
 }

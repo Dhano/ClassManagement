@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClassesTable extends Migration
+class CreateFollowUpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->text('year');
+        Schema::create('follow_ups', function(Blueprint $table)
+        {
+            $table->increments('id');
+
+            $table->string('enquiry_id');
+
+            $table->date('date');
+            $table->text('comments')->nullable();
 
             $table->text('additional_columns')->nullable();
             $table->integer('created_by');

@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('last_name')->nullable();
             $table->text('contact_no')->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->integer('role')->default(0)->nullable();
             $table->enum('gender', ['M', 'F' ,'O'])->nullable();
             $table->text('photo')->nullable();
             $table->text('additional_columns')->nullable();

@@ -115,7 +115,7 @@
 
         manageClassesTable.on('click', '.delete', function(e) {
             $id = $(this).attr('id');
-            $('#delete_form').attr('action', '/published-books/' + $id);
+            $('#delete_form').attr('target', '/published-books/' + $id);
         })
 
     </script>

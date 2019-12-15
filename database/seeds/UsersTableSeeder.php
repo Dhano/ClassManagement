@@ -16,14 +16,13 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $user=User::create(['first_name' => 'Dhananjay',
-            'last_name' => 'sanjay',
-            'middle_name' => 'Dhananjay Ghumare',
+            'last_name' => 'Sanjay',
+            'middle_name' => 'Ghumare',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123'),
             'contact_no' => '9168977662',
-            'date_of_birth' => '2019-05-23',
-            'role' => 1,
-            'additional_columns' => 'additional coloumns',
+            'date_of_birth' => '1999-02-12',
+            'additional_columns' => 'additional columns',
             'gender' => 'M',
             'created_at' => '2019-05-23 07:35:39',
             'updated_at' => '2019-05-23 07:35:39'
@@ -31,12 +30,5 @@ class UsersTableSeeder extends Seeder
 
         $user->assignRole('Admin');
 
-        Staff::create([
-            'user_id' => $user->id,
-            'created_by' => $user->id,
-            'updated_by' => $user->id,
-
-        ]);
-        
     }
 }

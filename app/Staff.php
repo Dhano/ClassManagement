@@ -23,18 +23,18 @@ class Staff extends Model {
 
     // Change if required
     public function ipr() {
-        return $this->hasMany('App\IPR', 'staff_id', 'id');
+        return $this->hasMany('App\Enquiry', 'staff_id', 'id');
     }
 
     public function events() {
         return $this->belongsToMany('App\Event', 'event_staff');
 
     }
-  
+
     public function user() {
         return $this->belongsTo('App\User');
     }
-  
+
     public function internship()
     {
         return $this->hasMany('App\StudentInternship');

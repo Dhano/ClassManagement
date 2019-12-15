@@ -1,15 +1,15 @@
 <li class="nav-item">
-    <a class="nav-link {{Request::is('admin/staff*') ? 'active' : ''}}" href="#navbar-staff" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-staff">
-        <i class="ni ni-single-02 text-primary"></i>
-        <span class="nav-link-text">Staff</span>
+    <a class="nav-link {{Request::is('enquiry*') ? 'active' : ''}}" href="#navbar-enquiry" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-enquiry">
+        <i class="ni ni-ruler-pencil text-primary"></i>
+        <span class="nav-link-text">enquiry</span>
     </a>
-    <div class="collapse {{Request::is('admin/staff*') ? 'show' : ''}}" id="navbar-staff">
+    <div class="collapse {{Request::is('/enquiry*') ? 'show' : ''}}" id="navbar-enquiry">
         <ul class="nav nav-sm flex-column">
             <li class="nav-item">
-                <a href="/admin/staff/create" class="nav-link">Add Staff</a>
+                <a href="/enquiry/create" class="nav-link">Add Enquiry</a>
             </li>
             <li class="nav-item">
-                <a href="/admin/staff" class="nav-link">Manage Staff</a>
+                <a href="/enquiry" class="nav-link">Manage Enquiry</a>
             </li>
         </ul>
     </div>

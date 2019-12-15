@@ -9,14 +9,14 @@
 namespace App\Services;
 
 
-use App\Classs;
+use App\FollowUp;
 
 class ClassService
 {
 
     public function store($validatedData, $user_id){
 
-        $class=Classs::create([
+        $class=FollowUp::create([
             'year' => $validatedData['year'],
             'created_by' => $user_id
         ]);
@@ -31,7 +31,7 @@ class ClassService
      */
     public function getDatatable()
     {
-        return Classs::orderBy('created_at', 'desc');
+        return FollowUp::orderBy('created_at', 'desc');
     }
 
     public function getClassStudentsDatatable($class){
@@ -41,7 +41,7 @@ class ClassService
     }
 
     public function delete($id,$user_id){
-        return Classs::where('id', $id)
+        return FollowUp::where('id', $id)
             ->delete();
     }
 }

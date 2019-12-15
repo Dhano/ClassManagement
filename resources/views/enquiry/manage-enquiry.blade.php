@@ -7,13 +7,13 @@
 @endsection
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="/ipr"><i class="fas fa-book"></i></a></li>
-    <li class="breadcrumb-item"><a href="/ipr">IPR</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Manage IPR</li>
+    <li class="breadcrumb-item"><a href="/enquiry"><i class="ni ni-ruler-pencil"></i></a></li>
+    <li class="breadcrumb-item"><a href="/enquiry">Enquiry</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Manage Enquiry</li>
 @endsection
 
 @section('actions')
-    <a href="/ipr/create" class="btn btn-sm btn-neutral">New</a>
+    <a href="/enquiry/create" class="btn btn-sm btn-neutral">New</a>
 @endsection
 
 @section('page-content')
@@ -23,31 +23,39 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header">
-                    <h3 class="mb-0">Datatable</h3>
+                    <h3 class="mb-0">Enquiry</h3>
                     <p class="text-sm mb-0">
-                        This is an exmaple of datatable using the well known datatables.net plugin. This is a minimal setup in order to get started fast.
+                        Manage your Enquires here.....
                     </p>
                 </div>
                 <div class="table-responsive py-4">
-                    <table class="table table-flush" id="ipr-list">
+                    <table class="table table-flush" id="enquiry-list">
                         <thead class="thead-light">
                         <tr>
+                            <th> # </th>
+                            <th> Name </th>
+                            <th> Address </th>
+                            <th> Number </th>
+                            <th> College </th>
                             <th> Year </th>
-                            <th> Patents Published Count </th>
-                            <th> Patents Granted Count </th>
-                            <th> Additional Columns </th>
-                            <th> Date </th>
+                            <th> Branch </th>
+                            <th> Comments </th>
+                            <th> View </th>
                             <th> Edit </th>
                             <th> Delete </th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
+                            <th> # </th>
+                            <th> Name </th>
+                            <th> Address </th>
+                            <th> Number </th>
+                            <th> College </th>
                             <th> Year </th>
-                            <th> Patents Published Count </th>
-                            <th> Patents Granted Count </th>
-                            <th> Additional Columns </th>
-                            <th> Date </th>
+                            <th> Branch </th>
+                            <th> Comments </th>
+                            <th> View </th>
                             <th> Edit </th>
                             <th> Delete </th>
                         </tr>
@@ -66,12 +74,12 @@
         <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title" id="modal-title-default">Delete IPR</h6>
+                    <h6 class="modal-title" id="modal-title-default">Delete Enquiry</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form  id="delete_form" method="POST">
+                <form  id="delete_form" method="POST" action="/enquiry">
                     <div class="modal-body">
 
                         @method('DELETE')
@@ -79,7 +87,7 @@
                         <div class="form-body">
                             <!-- START OF MODAL BODY -->
                             <div class="container">
-                                <label>Are you sure you want to delete the IPR ?</label>
+                                <label>Are you sure you want to delete Enquiry ?</label>
                             </div>
                         </div>
                     </div>
@@ -105,31 +113,38 @@
     <script src="{{ asset('assets/vendor/datatables.net-select/js/dataTables.select.min.js') }}"></script>
 
     <script>
-        let IPRTable = $('#ipr-list');
+        let enquiryTable = $('#enquiry-list');
 
-        IPRTable.DataTable({
+        enquiryTable.DataTable({
             processing: true,
             serverSide: true,
-            ajax: '/ipr/get-ipr',
+            ajax: '/enquiry/get-enquiry',
             columns: [
-                {data: 'year', name: 'year'},
-                {data: 'patents_published_count', name: 'patents_published_count'},
-                {data: 'patents_granted_count', name: 'patents_granted_count'},
-                {data: 'additional_columns', name: 'additional_columns'},
-                {data: 'date', name: 'date'},
-                {data: 'edit', name: 'edit'},
-                {data: 'delete', name: 'delete'}
-            ]
+                {data: 'id'},
+                {data: 'student_name'},
+                {data: 'student_address'},
+                {data: 'student_number'},
+                {data: 'student_college'},
+                {data: 'student_year'},
+                {data: 'student_branch'},
+                {data: 'comments'},
+                {data : 'view'},
+                {data: 'edit'},
+                {data: 'delete'}
+            ],
+            language: {paginate: {previous: "<i class='fa fa-angle-left'>", next: "<i class='fa fa-angle-right'>"}}
         });
 
-        IPRTable.on('click', '.delete', function() {
-            $id = $(this).attr('id');
-            $('#delete_form').attr('action', '/ipr/' + $id);
+        enquiryTable.on('click', '.delete', function() {
+
+            $id = $(this).attr("data-enquiryid");
+            console.log($id);
+            $('#delete_form').attr('action', '/enquiry/' + $id);
         });
 
-        IPRTable.on('click', '.edit', function () {
-            $id = $(this).attr('id');
-            window.location.pathname = '/ipr/' + $id + '/edit';
+        enquiryTable.on('click', '.edit', function () {
+            $id = $(this).data("data-enquiryid");
+            window.location.pathname = '/enquiry/' + $id + '/edit';
         });
 
     </script>

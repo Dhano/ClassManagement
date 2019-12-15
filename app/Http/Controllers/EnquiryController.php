@@ -7,14 +7,15 @@ use App\Services\EnquiryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
+use Exception;
 
-class IPRController extends Controller
+class EnquiryController extends Controller
 {
-    protected $iprService;
+    protected $enquiryService;
 
-    public function __construct(EnquiryService $iprService)
+    public function __construct(EnquiryService $enquiryService)
     {
-        $this->iprService = $iprService;
+        $this->enquiryService = $enquiryService;
     }
 
 
@@ -46,15 +47,20 @@ class IPRController extends Controller
      */
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
-            'year' => ['required', 'date'],
-            'patents_published_count' => ['required', 'numeric'],
-            'patents_granted_count' => ['required', 'numeric'],
-            'additional_columns' => ''
+            'student_name' => 'required',
+            'student_address' => 'required',
+            'student_number' => 'required|digits:10',
+            'student_college' => 'required',
+            'student_year' => 'required|numeric',
+            'student_branch' => 'required',
+            'comments' => 'required'
         ]);
 
         try {
-            $this->iprService->store($validatedData, Auth::user()->staff->id);
+            $this->enquiryService->store($validatedData, Auth::user()->id);
+
             return redirect('/enquiry')->with([
                 'type' => 'success',
                 'title' => 'Enquiry added successfully',
@@ -78,6 +84,20 @@ class IPRController extends Controller
     public function show($id)
     {
         //
+        try {
+            $enquiry = Enquiry::findOrFail($id);
+            return view('enquiry.view-enquiry')->with(
+                [
+                    'enquiry' => $enquiry
+                ]
+            );
+        } catch (Exception $exception) {
+            return redirect()->back()->with([
+                'type' => 'danger',
+                'title' => 'Failed To show Enquiry',
+                'message' => 'Error in viewing Enquiry'
+            ]);
+        }
     }
 
     /**
@@ -135,7 +155,7 @@ class IPRController extends Controller
     public function destroy($id)
     {
         try {
-            $this->iprService->delete($id,Auth::id());
+            $this->enquiryService->delete($id);
             return redirect()->back()->with([
                 'type' => 'success',
                 'title' => 'Enquiry Deleted successfully',
@@ -150,22 +170,21 @@ class IPRController extends Controller
         }
     }
 
-    public function getIPR() {
+    public function getEnquiry() {
         /*CURRENT USER PUBLISHED BOOKS*/
-        $ipr = $this->iprService->getDatatable(Auth::id());
+        $enquiry = $this->enquiryService->getDatatable();
 
-        return DataTables::of($ipr)
-            ->addColumn('edit', function(Enquiry $ipr) {
-//                Redirect to page
-                return '<button id="'.$ipr->id.'" class="edit fa fa-pencil-alt btn-sm btn-warning" data-toggle="modal" data-target="#editModal"></button>';
+        return DataTables::of($enquiry)
+            ->addColumn('edit', function(Enquiry $enquiry) {
+                return '<button data-enquiryid="'.$enquiry->id.'" class="edit fa fa-pencil-alt btn-sm btn-warning" data-toggle="modal" data-target="#editModal"></button>';
             })
-            ->addColumn('delete', function(Enquiry $ipr) {
-                return '<button id="'.$ipr->id.'" class="delete fa fa-trash btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal"></button>';
+            ->addColumn('delete', function(Enquiry $enquiry) {
+                return '<button data-enquiryid="'.$enquiry->id.'" class="delete fa fa-trash btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal"></button>';
             })
-            ->addColumn('date', function(Enquiry $ipr) {
-                return date('F d, Y', strtotime($ipr->created_at));
+            ->addColumn('view', function(Enquiry $enquiry) {
+                return '<a href="/enquiry/'.$enquiry->id.'" class="fa fa-search btn-sm btn-success"></a>';
             })
-            ->rawColumns(['edit', 'delete'])
+            ->rawColumns(['edit', 'delete', 'view'])
             ->make(true);
     }
 }

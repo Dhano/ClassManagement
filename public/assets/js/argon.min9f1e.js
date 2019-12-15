@@ -76,10 +76,6 @@ var Layout = function () {
         })
 }();
 
-
-
-
-
 var CopyIcon = function () {
     var e, a = ".btn-icon-clipboard", t = $(a);
     t.length && ((e = t).tooltip().on("mouseleave", function () {

@@ -55,7 +55,7 @@ class PublicationsController extends Controller
             $this->publicationsService->store($validatedData, Auth::id());
             return redirect('/publications')->with([
                 'type' => 'success',
-                'title' => 'IPR added successfully',
+                'title' => 'Enquiry added successfully',
                 'message' => 'The given Publication has been added successfully'
             ]);
         } catch (Exception $exception) {
@@ -139,8 +139,8 @@ class PublicationsController extends Controller
         } catch (Exception $exception) {
             return redirect()->back()->with([
                 'type' => 'danger',
-                'title' => 'Failed To Delete IPR',
-                'message' => 'Error in deleting IPR'
+                'title' => 'Failed To Delete Enquiry',
+                'message' => 'Error in deleting Enquiry'
             ]);
         }
     }

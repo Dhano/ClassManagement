@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Classs;
+use App\FollowUp;
 use App\Exports\StudentsExport;
 use App\Imports\StudentsImport;
 use App\PublishedBook;

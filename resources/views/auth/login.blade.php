@@ -58,8 +58,8 @@
             <div class="col-lg-5 col-md-7">
                 <div class="card bg-secondary border-0 mb-0">
                     <div class="card-header bg-transparent ">
-                        <div class="text-muted text-center "><h3>Fr.CRCE IT PORTAL</h3></div>
-                       
+                        <div class="text-muted text-center "><h3>Study Link</h3></div>
+
                     </div>
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
@@ -125,10 +125,10 @@
         <div class="row align-items-center justify-content-xl-between">
             <div class="col-xl-6">
                 <div class="copyright text-center text-xl-left text-muted">
-                    &copy; 2019 <a href="https://www.creative-tim.com/" class="font-weight-bold ml-1" target="_blank">FRCRCE IT</a>
+                    &copy; 2019 <a href="https://www.creative-tim.com/" class="font-weight-bold ml-1" target="_blank">Study Link</a>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </footer>

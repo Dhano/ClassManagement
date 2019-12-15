@@ -142,7 +142,7 @@
 
                         </div>
 
-                        
+
                         <div class="row">
 
                             <div class="col-md-4">
@@ -206,7 +206,7 @@
                                 </div>
                             </div>
 
-                            
+
 
                         </div>
 
@@ -357,7 +357,7 @@
                                     <input type="checkbox" class="custom-control-input" id="is_industry_experience_checkbox" @if(old('is_industry_experience')) checked @endif onchange="handleIndustryExperienceCheckbox(event)" value="1" name="is_industry_experience">
                                     <label class="custom-control-label" for="is_industry_experience_checkbox">Industry Experience</label>
                                 </div>
-                                
+
 
                                 @if(old('is_industry_experience'))
                                     {{--REMOVE THIS IS is_industry_experience is not checked--}}
